@@ -22,6 +22,7 @@ public class Candidate {
 	private String city;
 	private long phone;
 	private String email;
+	private String password;
 	private String userType;
 	
 
@@ -88,6 +89,22 @@ public class Candidate {
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "Candidate [candidateId=" + candidateId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", address=" + address + ", city=" + city + ", phone=" + phone + ", email=" + email + ", password="
+				+ password + ", userType=" + userType + "]";
+	}
+	
 	
 	
 

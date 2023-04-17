@@ -14,36 +14,35 @@ import lombok.AllArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@RequestMapping("candidate")
+@RequestMapping("certification")
 @AllArgsConstructor
 @CrossOrigin(origins = { "http://localhost:3000", "http://localhost:4200" })
 @RestController
-public class CandidateController {
-	
+public class CertificationController {
+
 	@Autowired
-	private CandidateService candService;
+	private CertificationService certificationService;
 	
 	
 	@GetMapping
-	public Flux<Candidate>displayAll(){
-		return candService.getAll();
+	public Flux<Certification>displayAll(){
+		return certificationService.getAll();
 	}
 	
 	@GetMapping("/{id}")
-	public Mono<Candidate> getById(@PathVariable("id")final int id){
-		return candService.getById(id);
+	public Mono<Certification> getById(@PathVariable("id")final int id){
+		return certificationService.getById(id);
 	}
 	
 	@PostMapping
-	public Mono save(@RequestBody final Candidate candidate) {
-		System.out.println("candidat:"+ candidate.toString());
-		return candService.save(candidate);
+	public Mono save(@RequestBody final Certification cert) {
+		System.out.println("certification:"+ cert.toString());
+		return certificationService.save(cert);
 	}
 	
 	@PutMapping("/{id}")
-	public Mono updateByid(@PathVariable("id") final int id, @RequestBody final Candidate candidate) {
-		candidate.setCandidateId(id);
-		return candService.update(id, candidate);
+	public Mono updateByid(@PathVariable("id") final int id, @RequestBody final Certification certification) {
+		certification.setExamCode(id);
+		return certificationService.update(id, certification);
 	}
-
 }

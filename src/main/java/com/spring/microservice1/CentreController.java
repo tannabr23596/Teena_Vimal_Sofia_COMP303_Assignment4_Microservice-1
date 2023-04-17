@@ -14,36 +14,35 @@ import lombok.AllArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@RequestMapping("candidate")
+@RequestMapping("centre")
 @AllArgsConstructor
 @CrossOrigin(origins = { "http://localhost:3000", "http://localhost:4200" })
 @RestController
-public class CandidateController {
-	
+public class CentreController {
+
 	@Autowired
-	private CandidateService candService;
+	private CentreService centreService;
 	
 	
 	@GetMapping
-	public Flux<Candidate>displayAll(){
-		return candService.getAll();
+	public Flux<Center>displayAll(){
+		return centreService.getAll();
 	}
 	
 	@GetMapping("/{id}")
-	public Mono<Candidate> getById(@PathVariable("id")final int id){
-		return candService.getById(id);
+	public Mono<Center> getById(@PathVariable("id")final int id){
+		return centreService.getById(id);
 	}
 	
 	@PostMapping
-	public Mono save(@RequestBody final Candidate candidate) {
+	public Mono save(@RequestBody final Center candidate) {
 		System.out.println("candidat:"+ candidate.toString());
-		return candService.save(candidate);
+		return centreService.save(candidate);
 	}
 	
 	@PutMapping("/{id}")
-	public Mono updateByid(@PathVariable("id") final int id, @RequestBody final Candidate candidate) {
-		candidate.setCandidateId(id);
-		return candService.update(id, candidate);
+	public Mono updateByid(@PathVariable("id") final int id, @RequestBody final Center center) {
+		center.setCenterCode(id);
+		return centreService.update(id, center);
 	}
-
 }
